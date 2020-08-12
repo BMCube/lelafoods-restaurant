@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/food")
+@RequestMapping("/foods")
 public class FoodController {
 
     @Autowired
     FoodService foodService;
 
-    @GetMapping({"","/all"})
+    @GetMapping({""})
     public List<Food> findAll(){
         List<Food> foodList =  foodService.findAll();
         return foodList;
@@ -32,7 +32,7 @@ public class FoodController {
         foodService.save(food);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Long id){
         foodService.deleteById(id);
     }
