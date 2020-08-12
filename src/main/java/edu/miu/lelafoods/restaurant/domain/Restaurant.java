@@ -17,12 +17,11 @@ public class Restaurant {
     private String name;
 
     @Valid
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "restaurant")
     List<Address> address;
 
     @Valid
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE, mappedBy = "restaurant")
     List<Food> foods;
 
     public List<Food> getFoods() {

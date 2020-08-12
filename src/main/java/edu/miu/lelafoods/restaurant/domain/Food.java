@@ -3,6 +3,7 @@ package edu.miu.lelafoods.restaurant.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "food")
@@ -21,19 +22,20 @@ public class Food {
     @NotEmpty
     private String description;
 
-    @ManyToOne()
-    @JoinColumn(name = "foodId")
-    Restaurant restaurant;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "Restaurant_food", joinColumns={@JoinColumn(name="Food_Id")},
+            inverseJoinColumns={ @JoinColumn(name="Restaurant_Id")})
+    List<Restaurant> restaurant;
 
     public Long getId() {
         return id;
     }
 
-    public Restaurant getRestaurant() {
+    public List<Restaurant> getRestaurant() {
         return restaurant;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
+    public void setRestaurant(List<Restaurant> restaurant) {
         this.restaurant = restaurant;
     }
 
