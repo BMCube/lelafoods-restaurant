@@ -1,8 +1,8 @@
-package edu.miu.restaurant.restaurant.service;
+package edu.miu.lelafoods.restaurant.service;
 
-import edu.miu.lelafoods.eai.domain.Cart;
+
+import edu.miu.lelafoods.restaurant.dto.CartDTO;
 
 public interface RabbitMQSenderService {
-	public void sendCartToRestaurant(Cart cart);
-	public void  sendCartEmail(String cart);
+	public void SendCartToDelivery(CartDTO cartDTO);
 }

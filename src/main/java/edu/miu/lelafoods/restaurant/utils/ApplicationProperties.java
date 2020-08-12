@@ -24,6 +24,9 @@ public class ApplicationProperties {
     @Value("${lelafoods-eai.rabbitmq.routingkey}")
     private String eaiRoutingkey;
 
+    @Value("${email.url}")
+    private String emailUrl;
+
     public String getExchange() {
         return exchange;
     }
@@ -44,5 +47,9 @@ public class ApplicationProperties {
 
     public String getRestaurantExchange() {
         return restaurantExchange;
+    }
+
+    public String getEmailUrl() {
+        return emailUrl;
     }
 }
