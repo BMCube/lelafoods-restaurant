@@ -22,7 +22,16 @@ public class Food {
     @NotEmpty
     private String description;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
+    public Food() {
+    }
+
+    public Food(@NotEmpty String name, @NotNull(message = "{Price.validation}") Double price, @NotEmpty String description) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+    }
+
+    //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinTable(name = "restaurant_food", joinColumns={@JoinColumn(name="Food_Id")},
 //            inverseJoinColumns={ @JoinColumn(name="Restaurant_Id")})
 //    Restaurant restaurant;
