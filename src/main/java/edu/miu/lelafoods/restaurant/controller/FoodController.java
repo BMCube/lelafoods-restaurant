@@ -32,6 +32,9 @@ public class FoodController {
         foodService.save(food);
     }
 
+//    @PutMapping("/edit/{id}")
+//    public void updateFOod()
+
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Long id){
         foodService.deleteById(id);

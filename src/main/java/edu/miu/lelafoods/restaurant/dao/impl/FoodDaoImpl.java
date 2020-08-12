@@ -14,7 +14,8 @@ public class FoodDaoImpl extends GenericDaoImpl<Food> implements FoodDao {
 
     @Override
     public Food findByFoodName(String name) {
-        Query query = entityManager.createQuery("select f from Food f where f.name =:name");
+        Query query = entityManager
+                .createQuery("select f from Food f where f.name =:name");
         return (Food) query.setParameter("name", name);
     }
 }

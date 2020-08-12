@@ -17,12 +17,20 @@ public class Restaurant {
     private String name;
 
     @Valid
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "restaurant")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Address> address;
 
     @Valid
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE, mappedBy = "restaurant")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL
+//            , mappedBy = "restaurant"
+    )
     List<Food> foods;
+
+    public Restaurant(@NotEmpty() String name, @Valid List<Address> address, @Valid List<Food> foods) {
+        this.name = name;
+        this.address = address;
+        this.foods = foods;
+    }
 
     public List<Food> getFoods() {
         return foods;
