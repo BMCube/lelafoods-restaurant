@@ -22,22 +22,22 @@ public class Food {
     @NotEmpty
     private String description;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "Restaurant_food", joinColumns={@JoinColumn(name="Food_Id")},
-            inverseJoinColumns={ @JoinColumn(name="Restaurant_Id")})
-    List<Restaurant> restaurant;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinTable(name = "restaurant_food", joinColumns={@JoinColumn(name="Food_Id")},
+//            inverseJoinColumns={ @JoinColumn(name="Restaurant_Id")})
+//    Restaurant restaurant;
 
     public Long getId() {
         return id;
     }
 
-    public List<Restaurant> getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(List<Restaurant> restaurant) {
-        this.restaurant = restaurant;
-    }
+//    public Restaurant getRestaurant() {
+//        return restaurant;
+//    }
+//
+//    public void setRestaurant(Restaurant restaurant) {
+//        this.restaurant = restaurant;
+//    }
 
     public void setId(Long id) {
         this.id = id;

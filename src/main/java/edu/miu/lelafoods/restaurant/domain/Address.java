@@ -23,10 +23,6 @@ public class Address {
     @NotEmpty()
     private String country;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurantId")
-    Restaurant restaurant;
-
     public Long getId() {
         return id;
     }
