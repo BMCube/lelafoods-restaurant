@@ -30,6 +30,5 @@ public class RabbitMQSenderServiceImpl implements RabbitMQSenderService {
         } else {
             System.err.println("Email sent failed please try again");
         }
-
     }
 }

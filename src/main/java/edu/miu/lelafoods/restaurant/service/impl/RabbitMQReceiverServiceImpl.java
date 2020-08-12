@@ -24,7 +24,7 @@ public class RabbitMQReceiverServiceImpl implements RabbitMQReceiverService {
     RabbitMQSenderService rabbitMQSenderService;
 
     @Override
-    @RabbitListener(queues = "lelafoods-eai.rabbitmq.queue")
+ //   @RabbitListener(queues = "lelafoods-eai.rabbitmq.queue")
     public void receiveCart(CartDTO cartDTO) {
 //        try {
 //            List<Order> orderList = cartDTO.getOrderList();
