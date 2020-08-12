@@ -26,6 +26,10 @@ public class Restaurant {
     )
     List<Food> foods;
 
+    public Restaurant(){
+
+    }
+
     public Restaurant(@NotEmpty() String name, @Valid List<Address> address, @Valid List<Food> foods) {
         this.name = name;
         this.address = address;

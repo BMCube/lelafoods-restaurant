@@ -23,6 +23,16 @@ public class Address {
     @NotEmpty()
     private String country;
 
+    public Address() {
+    }
+
+    public Address(@NotEmpty() String street, @NotEmpty() String city, @NotEmpty() String postalCode, @NotEmpty() String country) {
+        this.street = street;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.country = country;
+    }
+
     public Long getId() {
         return id;
     }
