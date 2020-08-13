@@ -9,11 +9,11 @@ public class ApplicationProperties {
     @Value("${lelafoods-delivery.rabbitmq.queue}")
     private String deliveryQueueName;
 
-    @Value("${lelafoods-order.rabbitmq.exchange}")
-    private String exchange;
-
     @Value("${lelafoods-delivery.rabbitmq.routingkey}")
     private String deliveryRoutingkey;
+
+    @Value("${lelafoods-order.rabbitmq.exchange}")
+    private String exchange;
 
     @Value("${lelafoods-eai.rabbitmq.queue}")
     private String eaiQueueName;
@@ -66,4 +66,5 @@ public class ApplicationProperties {
     public String getSaveCartQueueName() {
         return saveCartQueueName;
     }
+
 }

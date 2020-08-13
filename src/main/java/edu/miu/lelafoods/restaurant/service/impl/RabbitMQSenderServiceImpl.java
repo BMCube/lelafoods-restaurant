@@ -25,10 +25,10 @@ public class RabbitMQSenderServiceImpl implements RabbitMQSenderService {
 
 
     @Override
-    public void saveCart(CartDto cartDto) {
+    public void saveQueueCart(CartDto cartDto) {
         //Modify the cartDto and save it on queue save
         amqpTemplate.convertAndSend(applicationProperties.getRestaurantExchange(), applicationProperties.getSaveCartRoutingkey(), cartDto);
-        System.out.println("saveCart = " + cartDto);
+        System.out.println("saveQueueCart = " + cartDto);
     }
 
     @Override
@@ -37,12 +37,18 @@ public class RabbitMQSenderServiceImpl implements RabbitMQSenderService {
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         //Modify the cartDto here to change the subject with relation to restaurant MS
         HttpEntity<?> entity = new HttpEntity<>(cartDto, headers);
-        ResponseEntity<Object> response = restTemplate.exchange(applicationProperties.getEmailUrl(), HttpMethod.POST, entity, Object.class);
+        ResponseEntity<String> response = restTemplate.exchange(applicationProperties.getEmailUrl(), HttpMethod.POST, entity, String.class);
         if (response.getStatusCode().is2xxSuccessful()) {
             System.out.println("Email sent successfully:  " + response.getBody());
         } else {
             System.err.println("Email sent failed please try again");
         }
+    }
+
+    @Override
+    public void sendDeliveryQueueCart(CartDto cartDto) {
+        amqpTemplate.convertAndSend(applicationProperties.getRestaurantExchange(), applicationProperties.getDeliveryRoutingkey(), cartDto);
+        System.out.println("deliveryQueueCart = " + cartDto);
     }
 
 

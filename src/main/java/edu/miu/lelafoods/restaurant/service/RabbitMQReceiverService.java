@@ -4,4 +4,5 @@ import edu.miu.lelafoods.restaurant.dto.CartDto;
 
 public interface RabbitMQReceiverService {
 	public void receiveCart(CartDto cartDto);
+	public CartDto receiveSaveQueueCart();
 }
