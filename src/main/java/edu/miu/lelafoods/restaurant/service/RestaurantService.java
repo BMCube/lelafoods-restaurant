@@ -12,5 +12,5 @@ public interface RestaurantService {
     public void deleteById(Long id);
     public Restaurant findByRestaurantName(String name);
     public Restaurant findById(Long id);
-    public void getUpsertCart();
+    public CartDto getUpsertCart();
 }

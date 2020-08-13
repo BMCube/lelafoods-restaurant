@@ -8,12 +8,10 @@ import edu.miu.lelafoods.restaurant.service.RabbitMQSenderService;
 import edu.miu.lelafoods.restaurant.service.RestaurantService;
 import edu.miu.lelafoods.restaurant.utils.ApplicationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -61,10 +59,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void getUpsertCart() {
+    public CartDto getUpsertCart() {
         CartDto cartDto = rabbitMQReceiverService.receiveSaveQueueCart();
 //process the cart
         rabbitMQSenderService.sendDeliveryQueueCart(cartDto);
 
+        return cartDto;
     }
 }
