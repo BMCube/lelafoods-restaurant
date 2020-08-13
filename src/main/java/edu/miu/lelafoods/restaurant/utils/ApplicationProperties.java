@@ -27,6 +27,12 @@ public class ApplicationProperties {
     @Value("${email.url}")
     private String emailUrl;
 
+    @Value("${lelafoods-save-cart.rabbitmq.routingkey}")
+    private String saveCartRoutingkey;
+
+    @Value("${lelafoods-save-cart.rabbitmq.queue}")
+    private String saveCartQueueName;
+
     public String getExchange() {
         return exchange;
     }
@@ -51,5 +57,13 @@ public class ApplicationProperties {
 
     public String getEmailUrl() {
         return emailUrl;
+    }
+
+    public String getSaveCartRoutingkey() {
+        return saveCartRoutingkey;
+    }
+
+    public String getSaveCartQueueName() {
+        return saveCartQueueName;
     }
 }

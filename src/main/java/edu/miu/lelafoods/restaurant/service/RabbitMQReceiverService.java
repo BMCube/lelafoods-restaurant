@@ -1,8 +1,7 @@
 package edu.miu.lelafoods.restaurant.service;
 
-import edu.miu.lelafoods.restaurant.dto.CartDTO;
+import edu.miu.lelafoods.restaurant.dto.CartDto;
 
 public interface RabbitMQReceiverService {
-	public void receiveCart(CartDTO cartDTO);
-	public String cartToJson(CartDTO cartDTO);
+	public void receiveCart(CartDto cartDto);
 }
