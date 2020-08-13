@@ -3,6 +3,8 @@ package edu.miu.lelafoods.restaurant.service.impl;
 import edu.miu.lelafoods.restaurant.dao.RestaurantDao;
 import edu.miu.lelafoods.restaurant.domain.Restaurant;
 import edu.miu.lelafoods.restaurant.dto.CartDto;
+import edu.miu.lelafoods.restaurant.service.RabbitMQReceiverService;
+import edu.miu.lelafoods.restaurant.service.RabbitMQSenderService;
 import edu.miu.lelafoods.restaurant.service.RestaurantService;
 import edu.miu.lelafoods.restaurant.utils.ApplicationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +28,18 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     RestTemplate restTemplate = new RestTemplate();
 
+    @Autowired
+    RabbitMQSenderService rabbitMQSenderService;
+
+    @Autowired
+    RabbitMQReceiverService rabbitMQReceiverService;
+
     @Override
     public void save(Restaurant restaurant) {
         restaurantDao.save(restaurant);
 
     }
+
     @Override
     public List<Restaurant> findRestaurant() {
         return restaurantDao.findAll();
@@ -52,8 +61,10 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void getSavedCart() {
-//Read from save query and process the cart
-// and store on deliver queue
+    public void getUpsertCart() {
+        CartDto cartDto = rabbitMQReceiverService.receiveSaveQueueCart();
+//process the cart
+        rabbitMQSenderService.sendDeliveryQueueCart(cartDto);
+
     }
 }

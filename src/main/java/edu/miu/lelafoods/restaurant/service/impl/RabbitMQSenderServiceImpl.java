@@ -37,7 +37,7 @@ public class RabbitMQSenderServiceImpl implements RabbitMQSenderService {
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         //Modify the cartDto here to change the subject with relation to restaurant MS
         HttpEntity<?> entity = new HttpEntity<>(cartDto, headers);
-        ResponseEntity<Object> response = restTemplate.exchange(applicationProperties.getEmailUrl(), HttpMethod.POST, entity, Object.class);
+        ResponseEntity<String> response = restTemplate.exchange(applicationProperties.getEmailUrl(), HttpMethod.POST, entity, String.class);
         if (response.getStatusCode().is2xxSuccessful()) {
             System.out.println("Email sent successfully:  " + response.getBody());
         } else {

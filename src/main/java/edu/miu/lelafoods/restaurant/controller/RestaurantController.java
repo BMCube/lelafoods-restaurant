@@ -1,7 +1,6 @@
 package edu.miu.lelafoods.restaurant.controller;
 
 import edu.miu.lelafoods.restaurant.domain.Restaurant;
-import edu.miu.lelafoods.restaurant.dto.CartDto;
 import edu.miu.lelafoods.restaurant.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,10 +32,10 @@ public class RestaurantController {
         restaurantService.save(restaurant);
     }
 
-    @GetMapping()
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void getSavedCart(){
-        restaurantService.getSavedCart();
+    @GetMapping("/order")
+    @ResponseStatus(HttpStatus.FOUND)
+    public void getUpsertCart(){
+        restaurantService.getUpsertCart();
     }
 
     @DeleteMapping("/{id}")
