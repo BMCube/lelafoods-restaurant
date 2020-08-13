@@ -7,7 +7,7 @@ import java.util.List;
 public interface FoodService {
 
     public void save(Food food);
-    //public void update(Food food);
+    public void update(Food food);
     public List<Food> findAll();
     public void deleteById(Long id);
     public Food findByFoodName(String name);

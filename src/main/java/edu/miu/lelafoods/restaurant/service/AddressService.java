@@ -11,5 +11,6 @@ public interface AddressService {
     public void deleteById(Long id);
     public Address findById(Long id);
     public Address findByAddressCity(String city);
+    public void update(Address address);
 
 }

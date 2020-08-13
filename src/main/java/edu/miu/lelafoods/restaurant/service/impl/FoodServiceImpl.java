@@ -27,12 +27,12 @@ public class FoodServiceImpl implements FoodService {
 
     }
 
-   /* @Override
+    @Override
     public void update(Food food) {
 
+        foodDao.update(food);
 
-
-    }*/
+    }
 
     @Override
     public List<Food> findAll() {

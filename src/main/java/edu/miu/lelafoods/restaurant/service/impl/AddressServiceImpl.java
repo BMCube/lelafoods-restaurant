@@ -44,4 +44,11 @@ public class AddressServiceImpl implements AddressService {
     public Address findByAddressCity(String city) {
         return addressDao.findByAddressCity(city);
     }
+
+    @Override
+    public void update(Address address) {
+
+        addressDao.update(address);
+
+    }
 }
