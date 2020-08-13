@@ -25,11 +25,17 @@ public class RabbitMQReceiverServiceImpl implements RabbitMQReceiverService {
     public void receiveCart(CartDto cartDto) {
         try {
             System.out.println("Recieved Message From RabbitMQ: " + cartDto.toString());
-            System.out.println("utility.cartToJson(cart) From RabbitMQ: " + utility.cartToJson(cartDto));
+            System.out.println("Json from RabbitMQ: " + utility.cartToJson(cartDto));
             //received the the dto and save on queue to be sent for the delivery e email based on post call
-            rabbitMQSenderService.saveCart(cartDto);
+            rabbitMQSenderService.saveQueueCart(cartDto);
+            rabbitMQSenderService.sendCartEmail(cartDto);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public void receiveSaveQueueCart(CartDto cartDto) {
+
     }
 }

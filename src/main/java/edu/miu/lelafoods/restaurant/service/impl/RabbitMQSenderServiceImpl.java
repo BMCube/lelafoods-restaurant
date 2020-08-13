@@ -25,10 +25,10 @@ public class RabbitMQSenderServiceImpl implements RabbitMQSenderService {
 
 
     @Override
-    public void saveCart(CartDto cartDto) {
+    public void saveQueueCart(CartDto cartDto) {
         //Modify the cartDto and save it on queue save
         amqpTemplate.convertAndSend(applicationProperties.getRestaurantExchange(), applicationProperties.getSaveCartRoutingkey(), cartDto);
-        System.out.println("saveCart = " + cartDto);
+        System.out.println("saveQueueCart = " + cartDto);
     }
 
     @Override
@@ -43,6 +43,12 @@ public class RabbitMQSenderServiceImpl implements RabbitMQSenderService {
         } else {
             System.err.println("Email sent failed please try again");
         }
+    }
+
+    @Override
+    public void sendDeliveryQueueCart(CartDto cartDto) {
+        amqpTemplate.convertAndSend(applicationProperties.getRestaurantExchange(), applicationProperties.getDeliveryRoutingkey(), cartDto);
+        System.out.println("deliveryQueueCart = " + cartDto);
     }
 
 
