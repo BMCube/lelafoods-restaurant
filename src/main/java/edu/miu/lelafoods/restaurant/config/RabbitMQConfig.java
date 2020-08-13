@@ -17,13 +17,16 @@ public class RabbitMQConfig {
     ApplicationProperties applicationProperties;
 
     @Bean
-    Queue queue() {
-        return new Queue(applicationProperties.getDeliveryQueueName(), true);
-    }
+    Queue queue() {        return new Queue(applicationProperties.getDeliveryQueueName(), true);    }
 
     @Bean
     Queue queueEai() {
         return new Queue(applicationProperties.getEaiQueueName(), true);
+    }
+
+    @Bean
+    Queue queueSave() {
+        return new Queue(applicationProperties.getSaveCartQueueName(), true);
     }
 
     @Bean
@@ -46,6 +49,10 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(queue()).to(exchangeDelivery()).with(applicationProperties.getDeliveryRoutingkey());
     }
 
+    @Bean
+    Binding bindingSave() {
+        return BindingBuilder.bind(queueSave()).to(exchangeDelivery()).with(applicationProperties.getSaveCartRoutingkey());
+    }
     @Bean
     Binding bindingEai() {
         return BindingBuilder.bind(queueEai()).to(exchange()).with(applicationProperties.getEaiRoutingkey());
