@@ -22,7 +22,6 @@ public class Restaurant {
 
     @Valid
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL
-//            , mappedBy = "restaurant"
     )
     List<Food> foods;
 

@@ -60,8 +60,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public CartDto getUpsertCart() {
-        CartDto cartDto = rabbitMQReceiverService.receiveSaveQueueCart();
-//process the cart
+        CartDto cartDto = rabbitMQReceiverService.getSaveQueueCart();
+        //process the cart
+        cartDto.setStatus("Processed");
         rabbitMQSenderService.sendDeliveryQueueCart(cartDto);
 
         return cartDto;

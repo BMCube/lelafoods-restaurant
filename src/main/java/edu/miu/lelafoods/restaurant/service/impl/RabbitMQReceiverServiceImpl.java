@@ -6,16 +6,12 @@ import edu.miu.lelafoods.restaurant.service.RabbitMQSenderService;
 import edu.miu.lelafoods.restaurant.utils.ApplicationProperties;
 import edu.miu.lelafoods.restaurant.utils.Utility;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RabbitMQReceiverServiceImpl implements RabbitMQReceiverService {
-
-//    @Autowired
-//    Queue queue;
 
     @Autowired
     RabbitMQSenderService rabbitMQSenderService;
@@ -35,8 +31,9 @@ public class RabbitMQReceiverServiceImpl implements RabbitMQReceiverService {
         try {
             System.out.println("Recieved Message From RabbitMQ: " + cartDto.toString());
             System.out.println("Json from RabbitMQ: " + utility.cartToJson(cartDto));
-            //received the the dto and save on queue to be sent for the delivery e email based on post call
+            //received the the dto and save on queue to be sent for the delivery
             rabbitMQSenderService.saveQueueCart(cartDto);
+            cartDto.setStatus("Restaurant received");
             rabbitMQSenderService.sendCartEmail(cartDto);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -44,11 +41,9 @@ public class RabbitMQReceiverServiceImpl implements RabbitMQReceiverService {
     }
 
     @Override
-    public CartDto receiveSaveQueueCart() {
-        //Modify the cartDto and save it on queue save
-        //I THINK THIS PART SAVES ME
+    public CartDto getSaveQueueCart() {
         CartDto cartDto= (CartDto) amqpTemplate.receiveAndConvert(applicationProperties.getSaveCartQueueName());
-        System.out.println("receiveSaveQueueCart "+cartDto );
+        System.out.println("getSaveQueueCart "+cartDto );
         return cartDto;
     }
 }
