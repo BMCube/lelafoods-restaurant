@@ -6,7 +6,6 @@ import edu.miu.lelafoods.restaurant.service.RabbitMQSenderService;
 import edu.miu.lelafoods.restaurant.utils.ApplicationProperties;
 import edu.miu.lelafoods.restaurant.utils.Utility;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

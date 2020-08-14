@@ -31,22 +31,9 @@ public class Food {
         this.description = description;
     }
 
-    //    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinTable(name = "restaurant_food", joinColumns={@JoinColumn(name="Food_Id")},
-//            inverseJoinColumns={ @JoinColumn(name="Restaurant_Id")})
-//    Restaurant restaurant;
-
     public Long getId() {
         return id;
     }
-
-//    public Restaurant getRestaurant() {
-//        return restaurant;
-//    }
-//
-//    public void setRestaurant(Restaurant restaurant) {
-//        this.restaurant = restaurant;
-//    }
 
     public void setId(Long id) {
         this.id = id;
